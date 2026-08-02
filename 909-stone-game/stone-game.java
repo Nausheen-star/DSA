@@ -30,7 +30,7 @@ public int solve(int[] piles, int i, int j){
 
         int alice= solve(piles, 0, n-1);
 
-        return alice >sum/2;
+        return alice >=sum/2;
     }
 }
 

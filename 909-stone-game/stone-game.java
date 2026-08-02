@@ -2,6 +2,8 @@ class Solution {
      int[][] dp;
 public int solve(int[] piles, int i, int j){
 
+    if(i==j) return dp[i][j] = piles[i];
+
     if(i>j) return 0;
 
     if(dp[i][j] !=-1){
@@ -28,7 +30,7 @@ public int solve(int[] piles, int i, int j){
 
         int alice= solve(piles, 0, n-1);
 
-        return alice >= sum/2;
+        return alice >sum/2;
     }
 }
 

@@ -1,28 +1,70 @@
+// Approach 1
+import java.util.Stack;
+
 class Solution {
     public boolean isValid(String s) {
-        
+
         Stack<Character> st = new Stack<>();
 
-        for(char ch : s.toCharArray()){
+        for (char ch : s.toCharArray()) {
 
-            if( ch=='(' || ch == '{' || ch =='['){
+            if (st.empty() || ch == '(' || ch == '{' || ch == '[') {
                 st.push(ch);
-            }else{
-
-                if(st.isEmpty()){
-                  return false;
-                  }
-
-                  char top = st.pop();
-
-                  if(top == '(' && ch != ')'
-                  || top == '{' && ch != '}'
-            || top == '[' && ch != ']'){
-                return false;
+                continue;
             }
-                
+
+            if (ch == ')') {
+                if (st.peek() == '(')
+                    st.pop();
+                else
+                    return false;
+
+            } else if (ch == '}') {
+                if (st.peek() == '{')
+                    st.pop();
+                else
+                    return false;
+
+            } else if (ch == ']') {
+                if (st.peek() == '[')
+                    st.pop();
+                else
+                    return false;
             }
         }
-        return st.isEmpty();
+
+        return st.empty();
     }
 }
+
+
+// // Approach-2
+// import java.util.Stack;
+
+// class Solution {
+//     public boolean isValid(String s) {
+
+//         Stack<Character> st = new Stack<>();
+
+//         for (char ch : s.toCharArray()) {
+
+//             if (ch == '(') {
+//                 st.push(')');
+//             } 
+//             else if (ch == '{') {
+//                 st.push('}');
+//             } 
+//             else if (ch == '[') {
+//                 st.push(']');
+//             } 
+//             else if (st.empty() || st.peek() != ch) {
+//                 return false;
+//             } 
+//             else {
+//                 st.pop();
+//             }
+//         }
+
+//         return st.empty();
+//     }
+// }

@@ -1,24 +1,26 @@
+//Approach-2 (Using Stack)
+//T.C : O(n) - 1 Pass
+//S.C : O(n)
 class Solution {
     public int longestValidParentheses(String s) {
-        
-        if(s.length() ==0) return 0;
-        Stack<Integer> st = new Stack<>();
-        st.push(-1); // base index
-        int max =0;
+        Deque<Integer> st = new ArrayDeque<>();
+        st.push(-1);
 
-        for(int i=0; i<s.length(); i++){
+        int maxL = 0;
+        int n = s.length();
 
-            if(s.charAt(i) == '('){
+        for (int i = 0; i < n; i++) {
+            if (s.charAt(i) == '(') {
                 st.push(i);
-            }else{
+            } else {
                 st.pop();
-                if(st.isEmpty()){
-                    st.push(i); // new base
-                }else{
-                max= Math.max(max, i-st.peek());
+                if (st.isEmpty()) {
+                    st.push(i);
+                } else {
+                    maxL = Math.max(maxL, i - st.peek());
                 }
             }
         }
-        return max;
+        return maxL;
     }
 }
